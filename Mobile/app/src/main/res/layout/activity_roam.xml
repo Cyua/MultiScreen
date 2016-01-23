@@ -3,11 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:orientation="horizontal"
+    android:background="#000000"
     tools:context="zju.mobile.RoamActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/testText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <com.zerokol.views.JoystickView
+        android:id="@+id/leftStick"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="20dp"
+        />
+    <com.zerokol.views.JoystickView
+        android:id="@+id/rightStick"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="370dp"
+        />
 </RelativeLayout>
