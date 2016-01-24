@@ -7,11 +7,11 @@
     android:background="#000000"
     tools:context="zju.mobile.RoamActivity">
 
-    <TextView
-        android:id="@+id/testText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toSelectAty"
+        android:text="Select"/>
 
     <com.zerokol.views.JoystickView
         android:id="@+id/leftStick"

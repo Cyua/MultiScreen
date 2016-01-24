@@ -1,7 +1,10 @@
 package zju.mobile;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.zerokol.views.JoystickView;
@@ -9,17 +12,16 @@ import com.zerokol.views.JoystickView;
 public class RoamActivity extends AppCompatActivity {
     private JoystickView leftStick;
     private JoystickView rightStick;
-    private TextView directionTextView;
+    private Button btn;
     private int leftAction=0;
     private int rightAction=0;
-    private String output="";
+    private MySender mySender = MySender.getInstance();
+    private String output="";            //the String to be sent
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roam);
-
-        directionTextView = (TextView)findViewById(R.id.testText);
 
         leftStick = (JoystickView) findViewById(R.id.leftStick);
         rightStick = (JoystickView) findViewById(R.id.rightStick);
@@ -27,8 +29,8 @@ public class RoamActivity extends AppCompatActivity {
             @Override
             public void onValueChanged(int angle, int power, int direction) {
                 leftAction = direction;
-                output = leftAction + ";" + rightAction;
-                directionTextView.setText(output);
+                output = "R;"+leftAction + ";" + rightAction;
+                mySender.sendData(output);
             }
         },JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -36,9 +38,19 @@ public class RoamActivity extends AppCompatActivity {
             @Override
             public void onValueChanged(int angle, int power, int direction) {
                 rightAction = direction;
-                output = leftAction + ";" + rightAction;
-                directionTextView.setText(output);
+                output = "R;"+leftAction + ";" + rightAction;
+                mySender.sendData(output);
+//                directionTextView.setText(output);
             }
         },JoystickView.DEFAULT_LOOP_INTERVAL);
+
+        btn = (Button)findViewById(R.id.toSelectAty);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoamActivity.this, SelectActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
