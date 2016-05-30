@@ -3,19 +3,16 @@ package zju.mobile;
 /**
  * Created by Cyua on 1/24/16.
  */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectOutput;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 
 
@@ -23,6 +20,7 @@ public class MySender {
     Socket socket = null;
     OutputStream ou;
     String buffer = "";
+    String id;
     boolean findServer=false;
     boolean conn_finish=false;
 
@@ -42,7 +40,7 @@ public class MySender {
     public boolean connect(){
         new MyThread().start();
         while (!conn_finish) {}
-        System.out.println("****************** findServer = " + findServer + " **********************");
+        System.out.println("****************** findServer = "+findServer+" **********************");
         return findServer;
     }
 
@@ -52,7 +50,7 @@ public class MySender {
             System.out.println("############# Socket Closed = " + socket.isClosed() + " ####################");
             //OutputStream ou = socket.getOutputStream();
             System.out.println(" *********** 2 here *****************");
-            ou.write((str+"\n").getBytes("gbk"));
+            ou.write((id+";"+str+"\n").getBytes("gbk"));
             ou.flush();
         } catch (IOException e){
             System.out.println("************* No Socket Connetion ***************");
@@ -66,7 +64,7 @@ public class MySender {
 
         @Override
         public void run() {
-            for (int i=100;i<=105;i++) {
+            for (int i=100;i<=110;i++) {
                 //定义消息
                 if (findServer) break;
                 Message msg = new Message();
@@ -77,7 +75,7 @@ public class MySender {
                     //连接服务器 并设置连接超时为5秒
                     System.out.println("############################## Run "+i+" ##########################");
                     socket = new Socket();
-                    socket.connect(new InetSocketAddress("192.168.1." + i, 10000), 1000);
+                    socket.connect(new InetSocketAddress("192.168.1." + i, 10001), 1000);
                     //获取输入输出流
                     System.out.println("###################### Connect Success "+i+" #################");
 
@@ -102,11 +100,14 @@ public class MySender {
                     ou = socket.getOutputStream();
                     //ou = socket.getOutputStream();
                     System.out.println("**************** yyy *******************");
-                    if (buffer.equals("accept")) {
+                    if (buffer.length()>7 && buffer.substring(0,6).equals("accept")) {
                         findServer=true;
                         System.out.println("*********** Find Correct Server ****************");
+
+                        id=buffer.substring(7);
+
                         //向服务器发送信息
-                        ou.write("I'm android client\n".getBytes("gbk"));
+                        ou.write(("I'm android client"+id+"\n").getBytes("gbk"));
                         ou.flush();
                         //bundle.putString("msg", buffer.toString());
                         //msg.setData(bundle);

@@ -50,9 +50,9 @@ public class SelectActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (isMoving) {
-                    output = "M;" + 2;
+                    output = "M;" + 2+";0";
                 } else {                      //selecting mode
-                    output = "S;" + 2;
+                    output = "S;" + 2+";0";
                 }
                 mySender.sendData(output);
             }
@@ -62,9 +62,9 @@ public class SelectActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (isMoving) {
-                    output = "M;" + 3;
+                    output = "M;" + 3+";0";
                 } else {                      //selecting mode
-                    output = "S;" + 3;
+                    output = "S;" + 3+";0";
                 }
                 mySender.sendData(output);
             }
@@ -74,9 +74,9 @@ public class SelectActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (isMoving) {
-                    output = "M;" + 4;
+                    output = "M;" + 4+";0";
                 } else {                      //selecting mode
-                    output = "S;" + 4;
+                    output = "S;" + 4+";0";
                 }
                 mySender.sendData(output);
             }
@@ -86,9 +86,9 @@ public class SelectActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (isMoving) {
-                    output = "M;" + 1;
+                    output = "M;" + 1+";0";
                 } else {                      //selecting mode
-                    output = "S;" + 1;
+                    output = "S;" + 1+";0";
                 }
                 mySender.sendData(output);
             }
@@ -99,9 +99,9 @@ public class SelectActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (isMoving) {
-                    output = "M;" + 5;
+                    output = "M;" + 5+";0";
                 } else {                      //selecting mode
-                    output = "S;" + 5;
+                    output = "S;" + 5+";0";
                 }
                 mySender.sendData(output);
             }
@@ -112,9 +112,9 @@ public class SelectActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (isMoving) {
-                    output = "M;" + 6;
+                    output = "M;" + 6+";0";
                 } else {                      //selecting mode
-                    output = "S;" + 6;
+                    output = "S;" + 6+";0";
                 }
                 mySender.sendData(output);
             }
